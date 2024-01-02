@@ -1,0 +1,25 @@
+{
+  "name": "aws-ecs-fargate-ecs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "commonjs",
+  "scripts": {
+    "start":"node server.js",
+    "dev": "tsx watch src/server.ts",
+    "build":"tsc"
+  },
+  "keywords": [],
+  "author": "Vinicius P",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/axios": "^0.14.0",
+    "@types/node": "^20.10.5",
+    "tsx": "^4.7.0",
+    "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "axios": "^1.6.3",
+    "fastify": "^4.25.2"
+  }
+}
