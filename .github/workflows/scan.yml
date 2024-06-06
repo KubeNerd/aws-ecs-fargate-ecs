@@ -1,20 +1,18 @@
 name: Trivy Scan
 
 on:
-  push:
   workflow_call:
     inputs:
-        docker_image:
-            required: true
-            type: string
-            description: "Tag image for scan"
+      docker_image:
+        required: true
+        type: string
+        description: "Tag image for scan"
 
 jobs:
   scan:
     runs-on: ubuntu-latest
 
     steps:
-    
       - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@master
         with:
