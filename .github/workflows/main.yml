@@ -38,9 +38,9 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-  scan:
-    name: Image Scanner
-    needs: [build-and-push]
-    uses: RxJSVini/aws-ecs-fargate-ecs/.github/workflows/scan.yml@main
-    with:
-      docker_image: viniciuspoa2/nlwunite_backend:${{ github.run_number }}
+  # scan:
+  #   name: Image Scanner
+  #   needs: [build-and-push]
+  #   uses: RxJSVini/aws-ecs-fargate-ecs/.github/workflows/scan.yml@main
+  #   with:
+  #     docker_image: viniciuspoa2/nlwunite_backend:${{ github.run_number }}
