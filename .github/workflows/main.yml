@@ -44,7 +44,7 @@ jobs:
 
   scan:
     name: Image Scanner
-    uses: RxJSVini/aws-ecs-fargate-ecs.git/.github/workflows/scan.yml@main
+    uses: RxJSVini/aws-ecs-fargate-ecs/.github/workflows/scan.yml@main
     needs: [build-and-push]
     with:
       docker_image: ${{ env.DOCKER_IMAGE }}
