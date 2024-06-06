@@ -1,0 +1,33 @@
+name: Trivy Scan
+
+on:
+  push:
+  workflow_call:
+    inputs:
+        docker_image:
+            required: true
+            type: string
+            description: "Tag image for scan"
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+
+    steps:
+    
+      - name: Run Trivy vulnerability scanner
+        uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: 'viniciuspoa2/nlwunite_backend:${{ steps.generate_sha.outputs.sha }}'
+          format: 'json'
+          output: 'resultado-trivy.json'
+          exit-code: '0'
+          ignore-unfixed: true
+          vuln-type: 'os,library'
+          severity: 'CRITICAL,HIGH'
+
+      - name: Upload file result of Trivy execution
+        uses: actions/upload-artifact@v4
+        with:
+          name: trivy-result
+          path: resultado-trivy.json
