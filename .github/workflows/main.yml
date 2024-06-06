@@ -37,10 +37,14 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
+    
+      - name: Set Docker Image Environment Variable
+        run: echo "DOCKER_IMAGE=viniciuspoa2/nlwunite_backend:${{ steps.generate_sha.outputs.sha }}" >> $GITHUB_ENV
+        
 
   scan:
     name: Image Scanner
     uses: RxJSVini/aws-ecs-fargate-ecs.git/.github/workflows/scan.yml@main
     needs: [build-and-push]
     with:
-      docker_image: viniciuspoa2/nlwunite_backend:${{ steps.generate_sha.outputs.sha }}
+      docker_image: ${{ env.DOCKER_IMAGE }}
