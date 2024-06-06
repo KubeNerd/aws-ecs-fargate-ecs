@@ -18,7 +18,7 @@ jobs:
       - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@master
         with:
-          image-ref: 'viniciuspoa2/nlwunite_backend:${{ steps.generate_sha.outputs.sha }}'
+          image-ref: ${{ inputs.docker_image }}
           format: 'json'
           output: 'resultado-trivy.json'
           exit-code: '0'
