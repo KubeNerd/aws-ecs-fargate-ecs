@@ -46,4 +46,4 @@ jobs:
     needs: [build-and-push]
     uses: RxJSVini/aws-ecs-fargate-ecs/.github/workflows/scan.yml@main
     with:
-      docker_image: ${{ env.DOCKER_IMAGE }}
+      docker_image: ${{ steps.generate_sha.outputs.sha }}
