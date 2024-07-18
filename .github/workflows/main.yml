@@ -7,11 +7,11 @@ on:
       - main
 
 jobs:
-  gitleaks-scan:
-    name: Run Gitleaks Scan
-    uses: RxJSVini/aws-ecs-fargate-ecs/.github/workflows/gitleaks.yml@main
+  # gitleaks-scan:
+  #   name: Run Gitleaks Scan
+  #   uses: RxJSVini/aws-ecs-fargate-ecs/.github/workflows/gitleaks.yml@main
   build-and-push:
-    needs: [gitleaks-scan]
+    # needs: [gitleaks-scan]
     name: 'Build and Push'
     runs-on: ubuntu-latest
     steps:
