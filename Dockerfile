@@ -1,25 +1,22 @@
-FROM node:16.15.1 as builder
-
-WORKDIR /node
-
-COPY package* tsconfig.json  ./
-
-COPY . .
-
-RUN npm install && npm run build
-
-
-FROM node:16.15.1-alpine3.15
+FROM node:20 as base
 
 WORKDIR /app
 
-COPY package* tsconfig.json  ./
+COPY  package*.json tsconfig.json ./
+COPY . .
 
-COPY --from=builder /node/build /app
+RUN npm ci && npm install -y
 
-RUN npm install
+RUN npm run build
 
-EXPOSE 8080
+FROM node:20-alpine3.20
 
+WORKDIR /app
 
-CMD npm start
+COPY --from=base /app/build /app
+COPY --from=base /app/package*.json /app
+COPY --from=base /app/node_modules ./node_modules
+
+EXPOSE 3333
+
+CMD ["npm", "start"]
