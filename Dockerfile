@@ -1,4 +1,4 @@
-FROM node:20 as base
+FROM --platform=linux/amd64 node:20 as base
 
 WORKDIR /app
 
@@ -9,11 +9,11 @@ RUN npm ci && npm install -y
 
 RUN npm run build
 
-FROM node:20-alpine3.20
+FROM --platform=linux/amd64 node:20-alpine3.20
 
 WORKDIR /app
 
-COPY --from=base /app/build /app
+COPY --from=base /app/dist /app
 COPY --from=base /app/package*.json /app
 COPY --from=base /app/node_modules ./node_modules
 

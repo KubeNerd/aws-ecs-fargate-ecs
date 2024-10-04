@@ -1,0 +1,44 @@
+# Build Local Development
+FROM --platform=linux/amd64 node:20-alpine AS development
+
+WORKDIR /usr/src
+
+COPY --chown=node:node package*.json tsconfig.json ./
+
+
+RUN npm ci
+
+COPY --chown=node:node . .
+
+USER node
+
+# Build local Production
+FROM --platform=linux/amd64 node:20-alpine AS build
+
+WORKDIR /usr/src
+
+COPY --chown=node:node package*.json tsconfig.json ./
+
+RUN ls -la /usr/src/
+
+RUN npm ci
+
+COPY --chown=node:node . .
+
+RUN npm run build
+
+RUN npm ci --omit=dev && npm cache clean --force
+
+USER node
+
+# Production
+FROM --platform=linux/amd64 node:20-alpine AS production
+
+WORKDIR /usr/src
+
+COPY --chown=node:node --from=build /usr/src/node_modules ./node_modules
+COPY --chown=node:node --from=build /usr/src/dist ./
+
+EXPOSE 3333
+
+CMD ["npm", "start"]
