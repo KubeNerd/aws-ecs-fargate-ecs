@@ -1,4 +1,7 @@
-FROM --platform=linux/amd64 node:20 as base
+
+# https://docs.docker.com/reference/build-checks/from-as-casing/
+
+FROM --platform=linux/amd64 node:20 AS base
 
 WORKDIR /app
 
