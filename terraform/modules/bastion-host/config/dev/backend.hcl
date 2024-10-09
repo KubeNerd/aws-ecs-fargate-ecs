@@ -1,0 +1,5 @@
+bucket = "tfstate-2024-871055234888"
+key    = "aws-ecs-fargate-ecs/dev/network/terraform.tfstate"
+region = "us-east-1"
+profile = "tf_macm1_"
+dynamodb_table = "tfblock-tfstate-2024-871055234888"

@@ -13,9 +13,9 @@ locals {
 
 
       common_tags = {
-          Project = "AWS ECS Fargate com Terrafomr"
+          Project = "AWS ECS Fargate com Terraform"
           Component = "Remote State"
-          CreatedAt = "2024-07-03"
+          CreatedAt = "2024-10-08"
           ManagedBy = "Terraform"
           Owner = "Vinicius P"
           Env = env.enviroment

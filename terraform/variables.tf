@@ -1,3 +1,8 @@
+variable "aws_region" {
+  description = "Specifies the AWS region where the resources will be deployed. Example: ''"
+  type = string
+}
+
 variable "environment" {
   description = "Deployment environment name, such as 'dev', 'test', 'prod'. This categorizes the Network resources by their usage stage"
   type        = string
@@ -5,14 +10,7 @@ variable "environment" {
 }
 
 
-variable "create_vpc_endpoint" {
-  
-}
-
-variable "aws_region" {
-  description = "Specifies the AWS region where the resources will be deployed. Example: ''"
-  type = string
-}
+variable "create_vpc_endpoint" {}
 
 variable "network_cidr_block" {
   type = string
