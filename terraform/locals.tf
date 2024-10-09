@@ -2,6 +2,8 @@ locals {
 
       namespaced_departament_name = "${var.departament_name}-${var.environment}"
 
+      namespaced_service_name = "${var.departament_name}-${var.environment}"
+
       use_nat_gateway = var.use_nat_gateway
 
       use_nat_instance = var.use_nat_instance && local.use_nat_gateway == false

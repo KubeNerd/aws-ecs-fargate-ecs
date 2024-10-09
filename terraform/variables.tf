@@ -99,3 +99,10 @@ variable "az_count" {
     error_message = "az_count must be greater than 0 and lesser than 4"
   }
 }
+
+
+variable "service_name" {
+  description = "The name of the service the bastion host is associated with, used for naming and tagging resources in AWS"
+  type        = string
+  default     = "express-todo-api"
+}
